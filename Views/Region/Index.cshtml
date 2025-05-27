@@ -1,0 +1,247 @@
+﻿@using DocumentFormat.OpenXml.Office.CustomUI
+@model EmployeeHierachy12345.Models.Filter
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
+</head>
+
+<div class="card">
+    <div class="card-header">
+        <h1 class="card-title" style="color:dark-black; font-weight:bold;"><b>Region</b></h1>
+    </div>
+
+    <div class="card-body">
+        <div>
+        <p style="width: 1550px;">
+
+            <form asp-action="Dropdown" asp-controller="Region" method="post">
+                @* <label asp-for="EmployeeRegister.Region" class="control-label"></label> *@
+
+                @Html.DropDownListFor(Model => Model.EmployeeRegister.Region, new SelectList(Model.Regions, "Id", "RegionName"), "Select Region", new { @class = "form-control", id = "Region", name = "Region", Style = "width: 250px;" })
+                <span asp-validation-for="EmployeeRegister.Region" class="text-danger"></span>
+                
+                @* <br />
+                <button type="submit" class="btn btn-primary" style="margin-left:50px;">Submit</button> *@
+            
+                <button type="button" id="btnExport3" class="btn btn-danger float-right" style="margin-left: 12px;">
+                    <i class="fas fa-file-pdf"></i> PDF
+                </button>
+
+                <a class="btn btn-success float-right margin-left:25px;" asp-action="ExportPeopleInExcel" style="margin-left: 12px; float: right;">
+                    <i class="fas fa-file-excel"></i> Excel
+                </a>
+
+                @* <button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#FilterModal" style="margin-left: 12px;">
+                    <i class="fas fa-filter"></i> Filter
+                </button>
+                 *@
+                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#RegionModal" align="center">
+                    <i class="bi bi-plus-circle-dotted"></i> Region
+                </button>
+                <br />
+                <br />
+            </form>
+       
+        </p>
+        </div>
+<!-- Filter Record-->
+        <div class="modal fade" id="FilterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModelLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form asp-action="Filter" asp-controller="Region" method="post">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="exampleModalLabel"><b>Filter</b></h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+
+                            <div class="modal-body">
+
+                                <div class="form-group">
+                                    <label asp-for="region.RegionID" class="control-label"></label>
+                                    <input asp-for="region.RegionID" class="form-control" />
+                                    <span asp-validation-for="region.RegionID" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="region.RegionName" class="control-label"></label>
+                                    <input asp-for="region.RegionName" class="form-control" />
+                                    <span asp-validation-for="region.RegionName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="region.Busineesline" class="control-label"></label>
+                                    <input asp-for="region.Busineesline" class="form-control" />
+                                    <span asp-validation-for="region.Busineesline" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="region.Timezone" class="control-label"></label>
+                                    <input asp-for="region.Timezone" class="form-control" />
+                                    <span asp-validation-for="region.Timezone" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="region.pincode" class="control-label"></label>
+                                    <input asp-for="region.pincode" class="form-control" />
+                                    <span asp-validation-for="region.pincode" class="text-danger"></span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button asp-action="Filter" asp-controller="Region" type="submit" class="btn btn-primary">Filter</button>
+                            <button asp-action="ClearFilter" asp-controller="Region" class="btn btn-primary btncancel">Clear</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+<!-- Add Department Record-->
+        <div class="modal fade" id="RegionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModelLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form asp-action="Save" asp-controller="Region" method="post">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="exampleModalLabel"><b>Add Region</b></h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label asp-for="region.RegionID" class="control-label"></label>
+                                <input asp-for="region.RegionID" class="form-control" />
+                                <span asp-validation-for="region.RegionID" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="region.RegionName" class="control-label"></label>
+                                <input asp-for="region.RegionName" class="form-control" />
+                                <span asp-validation-for="region.RegionName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="region.Busineesline" class="control-label"></label>
+                                <input asp-for="region.Busineesline" class="form-control" />
+                                <span asp-validation-for="region.Busineesline" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="region.Timezone" class="control-label"></label>
+                                <input asp-for="region.Timezone" class="form-control" />
+                                <span asp-validation-for="region.Timezone" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="region.pincode" class="control-label"></label>
+                                <input asp-for="region.pincode" class="form-control" />
+                                <span asp-validation-for="region.pincode" class="text-danger"></span>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button class="btn btn-primary btncancel">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+<!-- Grid Menu -->
+       
+        <label for="txtSearch" style="margin-left: 811px;">Search:</label>
+        <input type="text" id="txtSearch" placeholder="">
+        <table id="example" class="table table-bordered table-striped" style="width: 20%; margin: 0 auto;">
+            <thead class="thead-dark">
+              <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.region.RegionID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.region.RegionName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.region.Busineesline)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.region.Timezone)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.region.pincode)
+                    </th>
+
+                    <th>Action</th>
+                </tr> 
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.Regions)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RegionID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RegionName)
+                    </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Busineesline)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Timezone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.pincode)
+                        </td>
+                               
+                    <td>
+                         <a asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>
+                         <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt" style="color: red;"></i></a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts {
+    <script src="/js/Custom.js"></script>
+}
+
+<!--- PDF --->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script type="text/javascript">
+    $("body").on("click", "#btnExport3", function () {
+        html2canvas($('[id*=example]')[0], {
+            onrendered: function (canvas) {
+                var data = canvas.toDataURL();
+                var docDefinition = {
+                    content: [{
+                        image: data,
+                        width: 500
+                    }]
+                };
+                pdfMake.createPdf(docDefinition).download("Table1.pdf");
+            }
+        });
+    });
+</script>
+
+

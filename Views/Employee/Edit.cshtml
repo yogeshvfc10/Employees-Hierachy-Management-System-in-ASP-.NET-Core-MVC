@@ -1,0 +1,210 @@
+﻿@model ViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<style>
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 30px;
+        height: 18px;
+    }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 18px;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+    input:checked + .slider {
+        background-color: #FFC080;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #FFC080;
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(14px);
+    }
+</style>
+
+<div class="container">
+    <h2 class="text-center my-4"><b>Update Employee Form</b></h2>
+
+    <form asp-action="Edit" asp-controller="Employee" method="post">
+        <input type="hidden" asp-for="EmployeeRegister.Id" />
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="EmployeeRegister.Name"></label>
+                    <input asp-for="EmployeeRegister.Name" class="form-control" />
+                    <span asp-validation-for="EmployeeRegister.Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="EmployeeRegister.Email"></label>
+                    <input asp-for="EmployeeRegister.Email" class="form-control" />
+                    <span asp-validation-for="EmployeeRegister.Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="EmployeeRegister.PhoneNo"></label>
+                    <input asp-for="EmployeeRegister.PhoneNo" class="form-control" />
+                    <span asp-validation-for="EmployeeRegister.PhoneNo" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="EmployeeRegister.Address"></label>
+                    <input asp-for="EmployeeRegister.Address" class="form-control" />
+                    <span asp-validation-for="EmployeeRegister.Address" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="EmployeeRegister.City"></label>
+                    <input asp-for="EmployeeRegister.City" class="form-control" />
+                    <span asp-validation-for="EmployeeRegister.City" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="EmployeeRegister.State"></label>
+                    <input asp-for="EmployeeRegister.State" class="form-control" />
+                    <span asp-validation-for="EmployeeRegister.State" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="EmployeeRegister.Hiredate"></label>
+                    <input asp-for="EmployeeRegister.Hiredate" class="form-control" type="date" />
+                    <span asp-validation-for="EmployeeRegister.Hiredate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="EmployeeRegister.Password"></label>
+                    <input asp-for="EmployeeRegister.Password" class="form-control" type="password" />
+                    <span asp-validation-for="EmployeeRegister.Password" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label">Gender</label>
+                    <div>
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(model => model.EmployeeRegister.Gender, "Male") Male
+                        </label>
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(model => model.EmployeeRegister.Gender, "Female") Female
+                        </label>
+                        <span asp-validation-for="EmployeeRegister.Gender" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="EmployeeRegister.Department"></label>
+                    @Html.DropDownListFor(model => model.EmployeeRegister.Department, new SelectList(Model.Department, "Id", "DepartmentName", Model.EmployeeRegister.Department), "Select Department", new { @class = "form-control" })
+                    <span asp-validation-for="EmployeeRegister.Department" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="EmployeeRegister.Region"></label>
+                    @Html.DropDownListFor(model => model.EmployeeRegister.Region, new SelectList(Model.Region, "Id", "RegionName", Model.EmployeeRegister.Region), "Select Region", new { @class = "form-control" })
+                    <span asp-validation-for="EmployeeRegister.Region" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label">Is Active</label>
+                    <div class="switch">
+                        <input type="checkbox" asp-for="EmployeeRegister.IsActive" id="IsActive" />
+                        <span class="slider round"></span>
+                    </div>
+                    <span asp-validation-for="EmployeeRegister.IsActive" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="EmployeeRegister.ShiftStartTime"></label>
+                    <input asp-for="EmployeeRegister.ShiftStartTime" class="form-control" type="time" />
+                    <span asp-validation-for="EmployeeRegister.ShiftStartTime" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="EmployeeRegister.ShiftEndTime"></label>
+                    <input asp-for="EmployeeRegister.ShiftEndTime" class="form-control" type="time" />
+                    <span asp-validation-for="EmployeeRegister.ShiftEndTime" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="EmployeeRegister.Salary"></label>
+                    <input asp-for="EmployeeRegister.Salary" class="form-control" type="number" min="0" step="0.01" />
+                    <span asp-validation-for="EmployeeRegister.Salary" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="EmployeeRegister.Comments"></label>
+                    <textarea asp-for="EmployeeRegister.Comments" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="EmployeeRegister.Comments" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </form>
+</div>

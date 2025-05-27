@@ -1,0 +1,143 @@
+﻿@model EmployeeHierachy12345.Models.Item
+
+@{
+    ViewData["Title"] = "Create Item1";
+}
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 450px; /* Keep the same compact width */
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .header h1 {
+                font-size: 24px;
+                color: #333;
+                margin-bottom: 10px;
+            }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-left: 0;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            button[type="submit"]:hover {
+                background-color: #3e8e41;
+            }
+    </style>
+</head>
+
+<br />
+<br />
+<br />
+<br />
+
+
+<div class="container pt-5">
+    <div class="header">
+        <h1><b>Add New Order</b></h1>
+        <hr />
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OrderID, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.OrderID, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.OrderID, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Company, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Status</label>
+            <div>
+                <label class="radio-inline">
+                    @Html.RadioButtonFor(model => model.Status, "Processing") Processing
+                </label>
+                <label class="radio-inline">
+                    @Html.RadioButtonFor(model => model.Status, "Delivered") Delivered
+                </label>
+                <label class="radio-inline">
+                    @Html.RadioButtonFor(model => model.Status, "Pending") Pending
+                </label>
+                <label class="radio-inline">
+                    @Html.RadioButtonFor(model => model.Status, "Shipped") Shipped
+                </label>
+                
+                <span>@Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Popularity)
+            @Html.DropDownListFor(model => model.Popularity, new List<SelectListItem>
+            {
+                new SelectListItem { Text = "80,79,90,170,-161,43,903", Value = "80,79,90,170,-161,43,903" },
+                new SelectListItem { Text = "90,-480,490,370,-61,83,163", Value = "90,-480,490,370,-61,83,163" },
+                new SelectListItem { Text = "90,80,-90,70,-61,83,463", Value = "90,80,-90,70,-61,83,463" },
+                new SelectListItem { Text = "628,80,-90,10,-61,63,45", Value = "628,80,-90,10,-61,63,45" },
+                new SelectListItem { Text = "190,80,-900,70,-617,83,683", Value = "190,80,-900,70,-617,83,683" },
+                new SelectListItem { Text = "790,380,-490,370,-61,813,863", Value = "790,380,-490,370,-61,813,863" },
+            }, "    Select Popularity", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Popularity, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-link" })
+    </div>
+</div>
+
+

@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Payment Success";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="alert alert-success text-center" role="alert" style="height:650px;">
+            <br /><br /><br /><br /><br /><br />
+            <h2>Your payment has been successfully transferred!</h2>
+            <p>Thank you for your transaction. If you have any questions, feel free to contact our support.</p>
+
+            <!-- Additional Design Elements -->
+            <div class="mt-4">
+                
+                <i class="fas fa-check-circle" style="font-size: 50px; color: green;"></i>
+                <br />
+                
+                <br />
+                <h4>Transaction ID : <strong>#456789</strong></h4>
+                <p>We have sent a confirmation email to <strong>Wipro10@gmail.com</strong>.</p>
+            </div>
+            <div class="mt-4">
+                <a href="@Url.Action("Index", "Home")" class="btn btn-primary btn-lg">Return to Home</a>
+                <a href="@Url.Action("Index", "Item")" class="btn btn-secondary btn-lg">View Order History</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

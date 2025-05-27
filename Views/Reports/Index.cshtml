@@ -1,0 +1,394 @@
+﻿@model IEnumerable<EmployeeHierachy12345.Models.Sale>
+
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
+
+</head>
+
+<body>
+
+    <div class="col-sm-6">
+        <h4 class="m-0"><b>Reports</b></h4>
+        <br />
+    </div>
+
+<!-- Main content -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header border-0">
+                        <div class="d-flex justify-content-between">
+                                <h3 class="card-title"><b>Summary</b></h3>
+                            <a href="javascript:void(0);">View Report</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">Budget Summary</span>
+                               
+                            </p>
+                            <p class="ml-auto d-flex flex-column text-right">
+                                <span class="text-success">
+                                    <i class="fas fa-arrow-up"></i> 12.5%
+                                </span>
+                                <span class="text-muted">Since last week</span>
+                            </p>
+                        </div>
+                        <!-- /.d-flex -->
+
+                            <div class="position-relative mb-4">
+                                <canvas id="visitors-chart" height="200"></canvas>
+                            </div>
+
+                    </div>
+                </div>
+                
+                
+                <!-- /.card -->
+                    <div class="card">
+                    <div class="card-header border-0">
+                            <h3 class="card-title"><b>Project Board</b></h3>
+                        <div class="card-tools">
+                            <a asp-action="Create"><i class="bi bi-plus-circle-dotted"></i></a>
+                            <a href="#" class="btn btn-tool btn-sm">
+                                <i class="fas fa-download"></i>
+                            </a>
+                            <a href="#" class="btn btn-tool btn-sm">
+                                <i class="fas fa-bars"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-striped table-valign-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Project</th>
+                                        <th>Price</th>
+                                        <th>Sales</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var sale in Model)
+                                    {
+                                        <tr>
+                                            <td>@sale.Project</td>
+                                            <td>@sale.Price</td>
+                                            <td>@sale.Sales</td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@sale.Id"><i class="bi bi-pencil-square"></i></a>
+                                                <form asp-action="DeleteConfirmed" asp-route-id="@sale.Id" method="post" style="display:inline;">
+                                                    <button type="submit" class="btn btn-link" onclick="return confirm('Are you sure you want to delete this Project?');">
+                                                        <i class="fas fa-trash-alt" style="color: red;"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.card -->
+            
+            
+            </div>
+            <!-- /.col-md-6 -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header border-0">
+                        <div class="d-flex justify-content-between">
+                                <h3 class="card-title"><b>Sales Report</b></h3>
+                            <a href="javascript:void(0);">View Report</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <p class="d-flex flex-column">
+                                    <span class="text-bold text-lg">Sales Over Time</span>
+                            </p>
+                            <p class="ml-auto d-flex flex-column text-right">
+                                <span class="text-success">
+                                    <i class="fas fa-arrow-up"></i> 33.1%
+                                </span>
+                                <span class="text-muted">Since last month</span>
+                            </p>
+                        </div>
+                        <!-- /.d-flex -->
+
+                            <div class="card-body">
+                                <div class="col-4" style="margin-left: 242px;">
+                                    <h2>@ViewData["Title"]</h2>
+                                    <canvas id="salesChart" ></canvas>
+                                </div>
+
+                                @section Scripts {
+                                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                    <script>
+
+                                        var ctx = document.getElementById('salesChart').getContext('2d');
+                                        var data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.ChartData));
+
+                                        var labels = data.map(function (e) { return e.Project; });
+                                        var values = data.map(function (e) { return e.TotalSales; });
+
+                                        var myDoughnutChart = new Chart(ctx, {
+                                            type: 'doughnut',
+                                            data: {
+                                                labels: labels,
+                                                datasets: [{
+                                                    label: 'Sales',
+                                                    data: values,
+                                                    backgroundColor: [
+                                                        '#FF6384',
+                                                        '#36A2EB',
+                                                        '#FFCE56',
+                                                        '#4BC0C0',
+                                                        '#9966FF'
+                                                    ],
+                                                    borderWidth: 1
+                                                }]
+                                            },
+                                            options: {
+                                                responsive: true,
+                                                plugins: {
+                                                    legend: {
+                                                        position: 'top',
+                                                    },
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Sales Distribution by Project'
+                                                    }
+                                                }
+                                            }
+                                        });
+                                    </script>
+                                }
+
+                                @* <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas> *@
+                            </div>
+
+                   </div>
+                </div>
+                <!-- /.card -->
+
+                <div class="card">
+                    <div class="card-header border-0">
+                            <h3 class="card-title"><b>Analytics Overview</b></h3>
+                        <div class="card-tools">
+                            <a href="#" class="btn btn-sm btn-tool">
+                                <i class="fas fa-download"></i>
+                            </a>
+                            <a href="#" class="btn btn-sm btn-tool">
+                                <i class="fas fa-bars"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                            <p class="text-success text-xl">
+                                <i class="ion ion-ios-refresh-empty"></i>
+                            </p>
+                            <p class="d-flex flex-column text-right">
+                                <span class="font-weight-bold">
+                                    <i class="ion ion-android-arrow-up text-success"></i> 12%
+                                </span>
+                                <span class="text-muted">CONVERSION RATE</span>
+                            </p>
+                        </div>
+                        <!-- /.d-flex -->
+                        <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                            <p class="text-warning text-xl">
+                                <i class="ion ion-ios-cart-outline"></i>
+                            </p>
+                            <p class="d-flex flex-column text-right">
+                                <span class="font-weight-bold">
+                                    <i class="ion ion-android-arrow-up text-warning"></i> 0.8%
+                                </span>
+                                <span class="text-muted">SALES RATE</span>
+                            </p>
+                        </div>
+                        <!-- /.d-flex -->
+                        <div class="d-flex justify-content-between align-items-center mb-0">
+                            <p class="text-danger text-xl">
+                                <i class="ion ion-ios-people-outline"></i>
+                            </p>
+                            <p class="d-flex flex-column text-right">
+                                <span class="font-weight-bold">
+                                    <i class="ion ion-android-arrow-down text-danger"></i> 1%
+                                </span>
+                                <span class="text-muted">REGISTRATION RATE</span>
+                            </p>
+                        </div>
+                        <!-- /.d-flex -->
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /.content -->
+  </div>
+<!-- /.content-wrapper -->
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+</aside>
+<!-- /.control-sidebar -->
+<!-- Main Footer -->
+
+</div>
+<!-- ./wrapper -->
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE -->
+<script src="dist/js/adminlte.js"></script>
+
+<!-- OPTIONAL SCRIPTS -->
+<script src="plugins/chart.js/Chart.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="dist/js/pages/dashboard3.js"></script>
+</body>
+
+
+<script>
+    $(function () {
+        // Base chart data
+        var areaChartData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'],
+            datasets: [
+                {
+                    label: 'Revenues',
+                    backgroundColor: 'rgba(60,141,188,0.9)',
+                    borderColor: 'rgba(60,141,188,0.8)',
+                    pointRadius: false,
+                    pointColor: '#3b8bba',
+                    pointStrokeColor: 'rgba(60,141,188,1)',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(60,141,188,1)',
+                    data: [28, 48, 40, 19, 86, 27, 90,90,54,21,34,97]
+                },
+                {
+                    label: 'Expenses',
+                    backgroundColor: 'rgba(210, 214, 222, 1)',
+                    borderColor: 'rgba(210, 214, 222, 1)',
+                    pointRadius: false,
+                    pointColor: 'rgba(210, 214, 222, 1)',
+                    pointStrokeColor: '#c1c7d1',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(220,220,220,1)',
+                    data: [65, 59, 80, 81, 56, 55, 40, 67, 80, 56, 79, 90, 100]
+                }
+            ]
+        };
+
+        // Create bar chart data by swapping datasets
+        var barChartData = $.extend(true, {}, areaChartData);
+        var temp0 = barChartData.datasets[0];
+        var temp1 = barChartData.datasets[1];
+        barChartData.datasets[0] = temp1;
+        barChartData.datasets[1] = temp0;
+
+        // Bar chart options
+        var barChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            datasetFill: false
+        };
+
+        // Get context for the bar chart
+        var barChartCanvas = $('#visitors-chart').get(0).getContext('2d');
+
+        // Create the bar chart
+        new Chart(barChartCanvas, {
+            type: 'bar',
+            data: barChartData,
+            options: barChartOptions
+        });
+
+        // Line chart options
+        var areaChartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            legend: {
+                display: false
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false,
+                    }
+                },
+                y: {
+                    grid: {
+                        display: false,
+                    }
+                }
+            }
+        };
+
+        // Create the line chart (using the same canvas)
+        new Chart(barChartCanvas, {
+            type: 'line',
+            data: areaChartData,
+            options: areaChartOptions
+        });
+    });
+</script>
+
+
+<script>
+    $(function () {
+        var donutChartCanvas = $('#donutChart').get(0).getContext('2d');
+
+        var donutData = {
+            labels: [
+                'Hallmark',
+                'PayRoll Management',
+                'Eistein II',
+                'POS Management',
+                'Cell-Stream',
+            ],
+            datasets: [
+                {
+                    data: [13, 29, 1230, 199, 99 ],
+                    backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+                }
+            ]
+        };
+
+        var donutOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+        };
+
+        // Create the donut chart
+        new Chart(donutChartCanvas, {
+            type: 'doughnut',
+            data: donutData,
+            options: donutOptions
+        });
+    });
+</script>
+
+
+

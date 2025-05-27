@@ -1,0 +1,142 @@
+﻿@model Department
+
+@{
+    ViewData["Title"] = "Edit Department";
+}
+
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 50px;
+            color: dodgerblue;
+            margin-bottom: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .header h1 {
+                font-size: 24px;
+                color: #333;
+                margin-bottom: 10px;
+            }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-left: 0;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 70%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            width: 70%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            button[type="submit"]:hover {
+                background-color: #3e8e41;
+            }
+
+        .checkbox {
+            margin-top: 10px;
+        }
+
+            .checkbox label {
+                font-weight: normal;
+            }
+    </style>
+</head>
+
+<div class="container pt-5">
+    <div class="row justify-content-center" style="height:630px;">
+        <div class="col-md-6">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="header">
+                <h1><b>Department</b></h1>
+                <hr />
+                <br />
+            </div>
+
+            <form asp-action="Edit" asp-controller="Department" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="DepartmentID" class="control-label" ></label>
+                    <input asp-for="DepartmentID" class="form-control" style="width:350px;  align="center" />
+                    <span asp-validation-for="DepartmentID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DepartmentName" class="control-label" ></label>
+                    <input asp-for="DepartmentName" class="form-control" style="width:350px;" />
+                    <span asp-validation-for="DepartmentName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DepartmentCode" class="control-label" ></label>
+                    <input asp-for="DepartmentCode" class="form-control" style="width:350px;" />
+                    <span asp-validation-for="DepartmentCode" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label" ></label>
+                    <input asp-for="Description" class="form-control" style="width:350px; " />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                <label class="control-label">Status</label>
+                <div>
+                    <label class="radio-inline">
+                        @Html.RadioButtonFor(model => model.Status, "Available") Available
+                    </label>
+                    <label class="radio-inline" style="margin-left: 25px;">
+                        @Html.RadioButtonFor(model => model.Status, "Not Available") Not Available
+                    </label>
+                    <span>@Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })</span>
+                </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block" style="width: 350px; margin: 0 auto;">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

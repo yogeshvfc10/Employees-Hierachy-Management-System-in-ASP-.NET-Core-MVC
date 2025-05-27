@@ -1,0 +1,451 @@
+﻿@using DocumentFormat.OpenXml.Office.CustomUI
+@model EmployeeHierachy12345.Models.CareerFilter
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
+</head>
+<body>
+<div class="col-sm-6">
+    <h4 class="m-0"><b>Career & Job Portals</b></h4>
+    <br />
+</div>
+
+<!-- -->
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-12">
+                <div class="info-box bg-info">
+                    <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
+
+                    <div class="info-box-content">
+                    
+                    <span class="info-box-text">Sign-up</span>
+                    <span class="info-box-number">Enrollment Process</span>
+                    
+
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 70%"></div>
+                        </div>
+                        <span class="progress-description">
+                            70% Increase in 5 Years 
+                        </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-12">
+                <div class="info-box bg-success">
+                    <span class="info-box-icon"><i class="far fa-thumbs-up"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">Choices</span>
+                        <span class="info-box-number">Shared Options</span>
+                    
+
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 55%"></div>
+                        </div>
+                        <span class="progress-description">
+                            55% Increase in 5 Years
+                        </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-12">
+                <div class="info-box bg-warning">
+                    <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
+
+                    <div class="info-box-content">
+                     <span class="info-box-text">Activities</span>   
+                    <span class="info-box-number">Event & Functions</span>
+                    
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 88%"></div>
+                        </div>
+                        <span class="progress-description">
+                            88% Increase in 305 Days
+                        </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-3 col-sm-6 col-12">
+                <div class="info-box bg-danger">
+                    <span class="info-box-icon"><i class="fas fa-comment"></i></span>
+
+                    <div class="info-box-content">
+
+                    <span class="info-box-text">Feedback</span>   
+                    <span class="info-box-number">Insightful Comments</span>
+                  
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 34%"></div>
+                        </div>
+                        <span class="progress-description">
+                            34% Increase in 3.5 years
+                        </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 mb-3">
+                    <!-- TO DO List -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="ion ion-clipboard mr-1"></i>
+                                 <b>Career - To Do List</b>
+                            </h3>
+                        </div>
+                        <!-- /.card-header -->
+                    <div class="card-body">
+                        <ul class="todo-list" data-widget="todo-list">
+                            <li>
+                                <!-- drag handle -->
+                                <span class="handle">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </span>
+                                <!-- checkbox -->
+                                <div class="icheck-primary d-inline ml-2">
+                                    <input type="checkbox" value="" name="todo1" id="todoCheck1">
+                                    <label for="todoCheck1"></label>
+                                </div>
+                                <!-- todo text -->
+                                <span class="text">Prepare for the client demo</span>
+                                <!-- Emphasis label -->
+                                <small class="badge badge-danger"><i class="far fa-clock"></i> 2 mins</small>
+                                <!-- General tools such as edit or delete-->
+                                <div class="tools">
+                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-trash-o"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="handle">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </span>
+                                <div class="icheck-primary d-inline ml-2">
+                                    <input type="checkbox" value="" name="todo2" id="todoCheck2" checked>
+                                    <label for="todoCheck2"></label>
+                                </div>
+                                <span class="text">Update status in project Board</span>
+                                <small class="badge badge-info"><i class="far fa-clock"></i> 78 hours</small>
+                                <div class="tools">
+                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-trash-o"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="handle">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </span>
+                                <div class="icheck-primary d-inline ml-2">
+                                    <input type="checkbox" value="" name="todo3" id="todoCheck3">
+                                    <label for="todoCheck3"></label>
+                                </div>
+                                <span class="text">Provide TL to junior developers</span>
+                                <small class="badge badge-warning"><i class="far fa-clock"></i> 51 day</small>
+                                <div class="tools">
+                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-trash-o"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="handle">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </span>
+                                <div class="icheck-primary d-inline ml-2">
+                                    <input type="checkbox" value="" name="todo4" id="todoCheck4">
+                                    <label for="todoCheck4"></label>
+                                </div>
+                                <span class="text">Review feedback for Company growth</span>
+                                <small class="badge badge-success"><i class="far fa-clock"></i> 3 days</small>
+                                <div class="tools">
+                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-trash-o"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="handle">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </span>
+                                <div class="icheck-primary d-inline ml-2">
+                                    <input type="checkbox" value="" name="todo5" id="todoCheck5">
+                                    <label for="todoCheck5"></label>
+                                </div>
+                                <span class="text">Maintain a Quality team reference.</span>
+                                <small class="badge badge-primary"><i class="far fa-clock"></i> 1 week</small>
+                                <div class="tools">
+                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-trash-o"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="handle">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </span>
+                                <div class="icheck-primary d-inline ml-2">
+                                    <input type="checkbox" value="" name="todo6" id="todoCheck6">
+                                    <label for="todoCheck6"></label>
+                                </div>
+                                <span class="text">Review & update protocols</span>
+                                <small class="badge badge-secondary"><i class="far fa-clock"></i> 1 month</small>
+                                <div class="tools">
+                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-trash-o"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <!-- drag handle -->
+                                <span class="handle">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </span>
+                                <!-- checkbox -->
+                                <div class="icheck-primary d-inline ml-2">
+                                    <input type="checkbox" value="" name="todo1" id="todoCheck1">
+                                    <label for="todoCheck1"></label>
+                                </div>
+                                <!-- todo text -->
+                                <span class="text">Research options for cloud hosters.</span>
+                                <!-- Emphasis label -->
+                                <small class="badge badge-danger"><i class="far fa-clock"></i> 19 mins</small>
+                                <!-- General tools such as edit or delete-->
+                                <div class="tools">
+                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-trash-o"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="handle">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </span>
+                                <div class="icheck-primary d-inline ml-2">
+                                    <input type="checkbox" value="" name="todo2" id="todoCheck2" checked>
+                                    <label for="todoCheck2"></label>
+                                </div>
+                                <span class="text">Project Management Tasks</span>
+                                <small class="badge badge-info"><i class="far fa-clock"></i> 17 hours</small>
+                                <div class="tools">
+                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-trash-o"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="handle">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </span>
+                                <div class="icheck-primary d-inline ml-2">
+                                    <input type="checkbox" value="" name="todo3" id="todoCheck3">
+                                    <label for="todoCheck3"></label>
+                                </div>
+                                <span class="text">Quality Assurance</span>
+                                <small class="badge badge-warning"><i class="far fa-clock"></i> 3 day</small>
+                                <div class="tools">
+                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-trash-o"></i>
+                                </div>
+                            </li>
+                            
+                            <li>
+                                <span class="handle">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </span>
+                                <div class="icheck-primary d-inline ml-2">
+                                    <input type="checkbox" value="" name="todo5" id="todoCheck5">
+                                    <label for="todoCheck5"></label>
+                                </div>
+                                <span class="text">Training and Development</span>
+                                <small class="badge badge-primary"><i class="far fa-clock"></i> 5 week</small>
+                                <div class="tools">
+                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-trash-o"></i>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="handle">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </span>
+                                <div class="icheck-primary d-inline ml-2">
+                                    <input type="checkbox" value="" name="todo4" id="todoCheck4">
+                                    <label for="todoCheck4"></label>
+                                </div>
+                                <span class="text">Deployment and Maintenance</span>
+                                <small class="badge badge-success"><i class="far fa-clock"></i> 9 days</small>
+                                <div class="tools">
+                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-trash-o"></i>
+                                </div>
+                            </li>
+                           
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8 col-sm-12 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="ion ion-clipboard mr-1"></i>
+                                 <b>Job Portal</b>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                            <a asp-action="Create" class="btn btn-primary" style="margin-left: 9px;"><i class="bi bi-plus-circle-dotted"></i> Interview </a>
+
+                                <diV>
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#FilterModal"  style="margin-right: 10px;">
+                                        <i class="fas fa-filter"></i> Filter
+                                    </button>
+
+                                    <a class="btn btn-success" asp-action="ExportPeopleInExcel" style="margin-right: 10px;">
+                                        <i class="fas fa-file-excel"></i> Excel
+                                    </a>
+
+                                    <button type="button" id="btnExport" class="btn btn-danger" style="margin-right: 11px;">
+                                        <i class="fas fa-file-pdf"></i> PDF
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="container mt-3">
+                                <div class="row">
+                                    @foreach (var item in Model.CareerGeneralModel)
+                                    {
+                                        <div class="col-md-4 col-sm-6 mb-3">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h5>@Html.DisplayFor(modelItem => item.Title)</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p><strong>Department:</strong> @Html.DisplayFor(modelItem => item.Department)</p>
+                                                    <p><strong>Location:</strong> @Html.DisplayFor(modelItem => item.Region)</p>
+                                                    <p><strong>Qualification:</strong> @Html.DisplayFor(modelItem => item.Qualification)</p>
+                                                    <p><strong>Experience:</strong> @Html.DisplayFor(modelItem => item.Description)</p>
+                                                    <p><strong>Company Benefits:</strong> @Html.DisplayFor(modelItem => item.Benefits)</p>
+                                                    <p><strong>Criteria:</strong> @Html.DisplayFor(modelItem => item.Policy)</p>
+                                                    <p><strong>Application Process:</strong> @Html.DisplayFor(modelItem => item.Application)</p>
+                                                    <p><strong>HR Contact:</strong> @Html.DisplayFor(modelItem => item.Contacts)</p>
+                                                    <p><strong>Apply CV to Email:</strong> @Html.DisplayFor(modelItem => item.ForwardMail)</p>
+                                                    <p><strong>Last Date for Submitting CV:</strong> @Html.DisplayFor(modelItem => item.Deadlines)</p>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary"><i class="bi bi-pencil-square"></i> Edit</a>
+                                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+
+<!--- PDF --->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script type="text/javascript">
+    $("body").on("click", "#btnExport", function () {
+        html2canvas($('[id*=example1]')[0], {
+            onrendered: function (canvas) {
+                var data = canvas.toDataURL();
+                var docDefinition = {
+                    content: [{
+                        image: data,
+                        width: 500
+                    }]
+                };
+                pdfMake.createPdf(docDefinition).download("Table1.pdf");
+            }
+        });
+    });
+</script>
+
+
+    <!-- Filter Record-->
+    <div class="modal fade" id="FilterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModelLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form asp-action="Filter" asp-controller="Career" method="post">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel"><b>Filter</b></h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label asp-for="Careers.Title" class="control-label"></label>
+                            <input asp-for="Careers.Title" class="form-control" />
+                            <span asp-validation-for="Careers.Title" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Careers.Department" class="control-label"></label>
+                            @Html.DropDownListFor(model => model.Careers.Department, new SelectList(Model.Departments, "Id", "DepartmentName"), "Select Department", new { @class = "form-control", id = "Department", name = "Department" })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ValidationMessageFor(model => model.Careers.Department, "", new { @class = "error-message" })
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Careers.Region" class="control-label"></label>
+                            @Html.DropDownListFor(model => model.Careers.Region, new SelectList(Model.Regions, "Id", "RegionName"), "Select Region", new { @class = "form-control", id = "Region", name = "Region" })
+                        </div>
+                        <div class="col-sm-3">
+                            @Html.ValidationMessageFor(model => model.Careers.Region, "", new { @class = "error-message" })
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button asp-action="Filter" asp-controller="Career" class="btn btn-primary">Filter</button>
+                        <button asp-action="ClearFilter" asp-controller="Career" class="btn btn-primary btncancel">Clear All</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+

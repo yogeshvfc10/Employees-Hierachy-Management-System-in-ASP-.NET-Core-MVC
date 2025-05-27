@@ -1,0 +1,114 @@
+﻿@model EmployeeHierachy12345.Models.Order
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 500px; /* Decreased max-width for the container */
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 20px auto; /* Add some margin for mobile view */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .header h1 {
+                font-size: 24px;
+                color: #333;
+                margin-bottom: 10px;
+            }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-left: 0;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="email"], input[type="tel"], input[type="number"] {
+            width: 100%; /* Full width for better responsiveness */
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            width: 100%; /* Full width for better responsiveness */
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            button[type="submit"]:hover {
+                background-color: #3e8e41;
+            }
+    </style>
+</head>
+
+@using (Html.BeginForm("Index", "Payment", FormMethod.Post))
+{
+    <div class="container pt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <!-- Use full width on smaller screens -->
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="header">
+                    <h1><b>New Transactions</b></h1>
+                    <hr />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" style="color: black; margin-left:60px; " for="Name">Company</label>
+                    <input asp-for="Name" type="text" class="form-control" style="margin-left:60px; width:330px;" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="Project" style="color: black; margin-left:60px;" class="form-label">Project</label>
+                    <input asp-for="Name" type="text" class="form-control" style="margin-left:60px; width:330px;"  required />
+                </div>
+
+                <div class="form-group">
+                    <label for="Email" style="color: black; margin-left:60px; " class="form-label">Gmail</label>
+                    <input asp-for="Email" type="email" class="form-control" style="margin-left:60px; width:330px;" required />
+                </div>
+
+                <div class="form-group">
+                    <label style="color: black; margin-left:60px;" class="form-label" for="PhoneNumber">Contact</label>
+                    <input asp-for="PhoneNumber" type="tel" style="margin-left:60px; width:330px;" class="form-control" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="Address" style="color: black; margin-left:60px;" class="form-label">Location</label>
+                    <input asp-for="Address" type="text" style="margin-left:60px; width:330px;" class="form-control" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="Amount" style="color: black; margin-left:60px;" class="form-label">Amount</label>
+                    <input asp-for="Amount" type="number" style="margin-left:60px; width:330px;" class="form-control" required />
+                </div>
+
+                <button type="submit" class="btn btn-success btn-lg mb-1" style="margin-left:60px; width:330px;">Proceed To Payment Options <span class="glyphicon glyphicon-send"></span></button>
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+}

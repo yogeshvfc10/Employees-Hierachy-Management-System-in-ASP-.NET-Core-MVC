@@ -1,0 +1,205 @@
+﻿@model AnalysisViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<head>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 450px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+            .header h1 {
+                font-size: 24px;
+                color: #333;
+                margin-bottom: 10px;
+            }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="date"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            button[type="submit"]:hover {
+                background-color: #3e8e41;
+            }
+    </style>
+</head>
+
+<div class="container pt-5">
+    <div class="header">
+        <h1><b>Edit Time & Material</b></h1>
+        <hr />
+    </div>
+
+    @using (Html.BeginForm("Edit", "Analysis", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <input type="hidden" asp-for="Analysis.Id" />
+
+        <div class="form-group">
+            <label asp-for="Analysis.Name" class="control-label"></label>
+            @Html.DropDownListFor(model => model.Analysis.Name,
+                     new SelectList(Model.Name, "Id", "Name", Model.Analysis.Name),
+                     "Select Employee",
+                     new { @class = "form-control" })
+            <span asp-validation-for="Analysis.Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Analysis.Project" class="control-label"></label>
+            @Html.DropDownListFor(model => model.Analysis.Project,
+                     new SelectList(Model.Project, "Id", "Project", Model.Analysis.Project),
+                     "Select Project",
+                     new { @class = "form-control" })
+            <span asp-validation-for="Analysis.Project" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Analysis.Task" class="control-label"></label>
+            <input asp-for="Analysis.Task" class="form-control" />
+            <span asp-validation-for="Analysis.Task" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Analysis.Module" class="control-label"></label>
+            <input asp-for="Analysis.Module" class="form-control" />
+            <span asp-validation-for="Analysis.Module" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Priority</label>
+            <div>
+                <label class="radio-inline">
+                    @Html.RadioButtonFor(model => model.Analysis.Priority, "High") High
+                </label>
+                <label class="radio-inline" style="margin-left: 70px;">
+                    @Html.RadioButtonFor(model => model.Analysis.Priority, "Medium") Medium
+                </label>
+                <label class="radio-inline" style="margin-left: 70px;">
+                    @Html.RadioButtonFor(model => model.Analysis.Priority, "Low") Low
+                </label>
+                <span>@Html.ValidationMessageFor(model => model.Analysis.Priority, "", new { @class = "text-danger" })</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Analysis.Date" class="control-label"></label>
+            <input asp-for="Analysis.Date" class="form-control" type="date" />
+            <span asp-validation-for="Analysis.Date" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Analysis.WorkingHrs" class="control-label"></label>
+            <input asp-for="Analysis.WorkingHrs" class="form-control" type="number" />
+            <span asp-validation-for="Analysis.WorkingHrs" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Client Approval</label>
+            <div>
+                <label class="radio-inline">
+                    @Html.RadioButtonFor(model => model.Analysis.ClientApproval, "Yes") Yes
+                </label>
+                <label class="radio-inline" style="margin-left: 80px;">
+                    @Html.RadioButtonFor(model => model.Analysis.ClientApproval, "No") No
+                </label>
+                <span>@Html.ValidationMessageFor(model => model.Analysis.ClientApproval, "", new { @class = "text-danger" })</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Analysis.Update" class="control-label"></label>
+            <input asp-for="Analysis.Update" class="form-control" />
+            <span asp-validation-for="Analysis.Update" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Audit Logs</label>
+            <div>
+                <label class="radio-inline">
+                    @Html.RadioButtonFor(model => model.Analysis.AuditLogs, "Billable") Billable
+                </label>
+                <label class="radio-inline" style="margin-left: 45px;">
+                    @Html.RadioButtonFor(model => model.Analysis.AuditLogs, "Non-Billable") Non-Billable
+                </label>
+                <span>@Html.ValidationMessageFor(model => model.Analysis.AuditLogs, "", new { @class = "text-danger" })</span>
+            </div>
+        </div>
+
+       
+
+        <div class="form-group">
+            <label asp-for="Analysis.Feedback" class="control-label"></label>
+            <input asp-for="Analysis.Feedback" class="form-control" />
+            <span asp-validation-for="Analysis.Feedback" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Status</label>
+            <div>
+                <label class="radio-inline">
+                    @Html.RadioButtonFor(model => model.Analysis.Status, "Completed") Completed
+                </label>
+                <label class="radio-inline" style="margin-left: 25px;">
+                    @Html.RadioButtonFor(model => model.Analysis.Status, "In Progress") In-Progress
+                </label>
+                <span>@Html.ValidationMessageFor(model => model.Analysis.Status, "", new { @class = "text-danger" })</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-link" })
+    </div>
+</div>
