@@ -7,10 +7,9 @@ namespace EmployeeHierachy12345.Models
         [Key]
         public int Id { get; set; }
 
-
         [DataType(DataType.Text)]
-        [Required(ErrorMessage = "Please enter name")]
-        public string LoginID { get; set; }
+        [Required(ErrorMessage = "Please enter Email")]
+        public string Email { get; set; }
 
         [Required(ErrorMessage = "Please enter Password")]
         [DataType(DataType.Password)]
