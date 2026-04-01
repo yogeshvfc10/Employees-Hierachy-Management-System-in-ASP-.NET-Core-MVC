@@ -1,8 +1,11 @@
 ﻿using DocumentFormat.OpenXml.InkML;
 using EmployeeHierachy12345.Models;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace EmployeeHierachy12345.Controllers
 {
@@ -16,30 +19,38 @@ namespace EmployeeHierachy12345.Controllers
             _dbcontext = dbContext;                                                                                 
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(AdminPage model)
+        public async Task<IActionResult> Login(LoginPage model)
         {
             if (ModelState.IsValid)
             {
-                var user = await _dbcontext.LoginPage.FirstOrDefaultAsync(u => u.LoginID == model.LoginID && u.Password == model.Password);
+                var user = await _dbcontext.LoginPage.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
                 if (user != null)
                 {
-                    if (user.Password == model.Password)
+                    var claims = new List<Claim>
                     {
-                        return RedirectToAction("Index", "Home");
-                    }
-                    else
+                        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                        new Claim(ClaimTypes.Name, user.Email)
+                    };
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var authProperties = new AuthenticationProperties
                     {
-                        ModelState.AddModelError("", "Invalid Username or password");
-
-                    }
+                        IsPersistent = model.RememberMe
+                    };
+                    await HttpContext.SignInAsync(
+                        CookieAuthenticationDefaults.AuthenticationScheme,
+                        new ClaimsPrincipal(claimsIdentity),
+                        authProperties);
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -47,6 +58,15 @@ namespace EmployeeHierachy12345.Controllers
                 }
             }
             return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login", "Login");
         }
 
     }
