@@ -9,7 +9,7 @@ namespace EmployeeHierachy12345.Models
         public string Project { get; set; }
         public string Task { get; set; }
         public int WorkingHrs { get; set; }
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
         public string Priority { get; set; }
         public string Status { get; set; }
         public string Feedback { get; set; }

@@ -25,7 +25,7 @@ namespace EmployeeHierachy12345.Models
         public int WorkingHrs { get; set; }
 
         [Required(ErrorMessage = "Please select Date")]
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
 
         [DataType(DataType.Text)]
         [Required(ErrorMessage = "Please enter Priority")]
