@@ -17,8 +17,7 @@ var provider = builder.Services.BuildServiceProvider();
 var configuration = provider.GetRequiredService<IConfiguration>();
 
 builder.Services.AddDbContext<EmployeeDbContext>(options =>
-    options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
-var dd = configuration.GetConnectionString("DefaultConnection");
+    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddTransient<IPaymentService, PaymentService>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
