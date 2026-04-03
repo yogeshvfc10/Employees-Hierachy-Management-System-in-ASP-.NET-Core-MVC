@@ -29,7 +29,7 @@ namespace EmployeeHierachy12345.Models
         public string Application { get; set; }
 
         [Required]
-        public DateOnly Deadlines { get; set; }
+        public DateTime Deadlines { get; set; }
 
         [Required]
         public string Contacts { get; set; }

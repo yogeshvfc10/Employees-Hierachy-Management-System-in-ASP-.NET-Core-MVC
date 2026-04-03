@@ -6,13 +6,13 @@ namespace EmployeeHierachy12345.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public String Department { get; set; }
-        public String Region { get; set; }
+        public string Department { get; set; }
+        public string Region { get; set; }
         public string Description { get; set; }
         public string Qualification { get; set; }
         public string Benefits { get; set; }
         public string Application { get; set; }
-        public DateOnly Deadlines { get; set; }
+        public DateTime Deadlines { get; set; }
         public string Contacts { get; set; }
         public string Policy { get; set; }
         public string ForwardMail { get; set; }
